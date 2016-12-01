@@ -13,6 +13,20 @@ class App extends Component {
     };
   }
 
+  addItem() {
+    const { items } = this.state;
+    const newItem = this.refs.newItem.value;
+
+    this.setState({
+      items: [
+        ...items,
+        newItem
+      ]
+    });
+
+    this.refs.newItem.value = '';
+  }
+
   render() {
     const { items } = this.state;
 
@@ -24,6 +38,10 @@ class App extends Component {
             <TodoItem key={item} name={item} />
           )) }
         </ul>
+        <div>
+          <input type="text" ref="newItem" />
+          <button onClick={() => this.addItem()}>Add Item</button>
+        </div>
       </div>
     );
   }
