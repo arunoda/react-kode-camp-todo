@@ -27,6 +27,14 @@ class App extends Component {
     this.refs.newItem.value = '';
   }
 
+  removeItem(item) {
+    const { items } = this.state;
+    const itemId = items.indexOf(item);
+    items.splice(itemId, 1);
+
+    this.setState({ items });
+  }
+
   render() {
     const { items } = this.state;
 
@@ -35,7 +43,11 @@ class App extends Component {
         <h1>My Todo App</h1>
         <ul>
           { items.map((item) => (
-            <TodoItem key={item} name={item} />
+            <TodoItem
+              key={item}
+              name={item}
+              onDone={() => this.removeItem(item)}
+            />
           )) }
         </ul>
         <div>
