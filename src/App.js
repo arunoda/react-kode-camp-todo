@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TodoList from './containers/TodoList';
+import { client } from './core';
 
 const baseUrl = 'https://mytodo-server.now.sh';
 
@@ -16,7 +17,7 @@ class App extends Component {
       .then((res) => res.json())
       .then(() => {
         this.refs.newItem.value = '';
-        location.reload();
+        client.fire('reload-app');
       })
       .catch((err) => alert(err.message));
   }
@@ -29,7 +30,7 @@ class App extends Component {
     })
       .then((res) => res.json())
       .then(() => {
-        location.reload();
+        client.fire('reload-app');
       })
       .catch((err) => alert(err.message));
   }
