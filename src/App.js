@@ -14,7 +14,10 @@ class App extends Component {
       body: JSON.stringify({ name: newItem }),
     })
       .then((res) => res.json())
-      .then(() => { this.refs.newItem.value = '' })
+      .then(() => {
+        this.refs.newItem.value = '';
+        location.reload();
+      })
       .catch((err) => alert(err.message));
   }
 
