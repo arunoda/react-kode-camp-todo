@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TodoItem from './TodoItem';
+import TodoList from './components/TodoList';
 
 class App extends Component {
   constructor(...args) {
@@ -41,15 +41,7 @@ class App extends Component {
     return (
       <div>
         <h1>My Todo App</h1>
-        <ul>
-          { items.map((item) => (
-            <TodoItem
-              key={item}
-              name={item}
-              onDone={() => this.removeItem(item)}
-            />
-          )) }
-        </ul>
+        <TodoList items={items} onDone={(i) => this.removeItem(i)} />
         <div>
           <input type="text" ref="newItem" />
           <button onClick={() => this.addItem()}>Add Item</button>
