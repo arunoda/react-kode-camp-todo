@@ -21,8 +21,17 @@ class App extends Component {
       .catch((err) => alert(err.message));
   }
 
-  removeItem(item) {
-
+  removeItem(name) {
+    fetch(`${baseUrl}/remove`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => alert(err.message));
   }
 
   render() {
